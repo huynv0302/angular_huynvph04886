@@ -1,0 +1,36 @@
+<div id="content">
+	
+  <div class="row p-2 justify-content-between">
+    <div class="col-md-4">
+      <ul class="d-block" *ngFor="let val of hero">
+        <li><span (click) = "detail(val)" class="btn btn-secondary">{{val.name | uppercase}}</span></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+          <img *ngIf="valDetail" src={{valDetail.avatar}} alt="avatar"/>
+        </div>
+        <div class="form-group">
+          <input type="text" name="name" class="form-control" placeholder="Họ và tên"  value="{{valDetail? valDetail.name : null}}"/>
+        </div>
+        <div class="form-group">
+          <input type="text" name="birdthDate" class="form-control" placeholder="Ngày sinh" required value="{{valDetail ? valDetail.birdthDate : null}}" />
+        </div>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input type="radio" name="sex" class="form-check-input" value="1" [checked]="valDetail.sex == 1" />
+            <label class="form-check-label">Nam</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="sex" class="form-check-input" value="0" [checked]="valDetail.sex == 0"/>
+            <label class="form-check-label">Nữ</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="" name="address" class="form-control" placeholder="Địa chỉ" required value="{{valDetail? valDetail.address : null}}"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

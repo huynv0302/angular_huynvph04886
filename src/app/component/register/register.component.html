@@ -1,0 +1,46 @@
+<section class="pt-3 pb-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="link-top-content">
+					<li><a routerLink="/">Trang chủ</a></li>
+					<li>&rsaquo;</li>
+					<li><a href="#">Đăng ký</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row pt-0 pb-0">
+			<div class="col-md-12">
+				<h1 class="text-center mb-5">Đăng ký</h1>
+				<form class="text-center form-register pb-5" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+					<div *ngIf="dataForm.status == 'INVALID' && dataForm.touched" class="alert alert-danger p-0 border-0 errors">
+						<span *ngIf="dataForm.controls.email?.errors?.required">Bạn chưa nhập email</span>
+						<span *ngIf="dataForm.controls.email?.errors?.email">Email sai định dạng</span>
+						<span *ngIf="dataForm.controls.name?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name.touched">Tên không được để trống</span>
+						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Bạn chưa nhập mật khẩu</span>
+						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.minlength?.actualLength < dataForm.controls.pw?.controls.password?.errors?.minlength?.requiredLength && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Mật khẩu tối thiểu 6 ký tự</span>
+						<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Chưa nhập lại mật khẩu</span>
+						<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.invalid && !dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Mật khẩu nhập lại chưa chính xác</span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" formControlName="email" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" formControlName="name" placeholder="Họ và tên">
+					</div>
+					<div class="" formGroupName="pw">
+						<div class="form-group">
+							<input type="password" class="form-control" formControlName="password" placeholder="Mật khẩu">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu">
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success" type="submit" >Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

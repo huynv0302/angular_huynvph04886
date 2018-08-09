@@ -1,0 +1,26 @@
+<div id="content">
+	<h1 class="theme mb-3">{{theme}}</h1>
+  <p>Thông tin chủ đề: {{contentTheme}}</p>
+  <p>Tên Nhóm: HS</p>
+  <p>Danh sách thành viên:</p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th class="text-center">Avatar</th>
+        <th class="text-center">Họ và tên</th>
+        <th class="text-center">Ngày sinh</th>
+        <th class="text-center">giới tính</th>
+        <th class="text-center">địa chỉ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let val of arr">
+        <td><img src={{val.avatar}} /></td>
+        <td>{{val.name}}</td>
+        <td>{{val.birdthDate}}</td>
+        <td>{{val.sex == 1 ? 'Nam' : 'Nữ'}}</td>
+        <td>{{val.address}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

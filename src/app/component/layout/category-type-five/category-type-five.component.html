@@ -1,0 +1,101 @@
+<!--danh muc-->
+<div class="row pt-5 pb-0">
+	<div class="col-md-12" *ngIf="postData">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_green">
+			<h3 class="cate-tile bg-green pr-3 pl-3 pt-2 pb-2">
+				{{cateData.name}}
+			</h3>
+			<nav class="menu-link-green">
+				<ul *ngIf="cateData.cate_child">
+					<li *ngFor="let val of cateData.cate_child"><a routerLink="/category/{{val.slug}}/{{val.id}}" title="{{val.name}}">{{val.name}}</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="row pt-4">
+			<div class="col-md-12">
+				<ul class="list-unstyled ul-media-b">
+					<li class="media d-flex pb-4 items-new-green" *ngFor="let val of postData">
+						<a routerLink="/detail/{{val.slug}}/{{val.id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src] = "val.feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{val.title}}</h5>
+								<span class="items-new-date pt-1 pb-2"><b>Ha Noi</b> - {{val.timetext}}</span>
+								<p class="items-new-shordesc">{{val.short_desc}}<a href="#" class="items_new_comment">2</a></p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="">
+			<ul class="page_controle page_controle_yellow">
+				<li class="{{page > 1? '': 'page_null'}}">
+					<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+				</li>
+				<li class="{{page == lastPage? 'page_null': ''}}">
+					<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-12" *ngIf="postData == false">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_green bg_wave img_empty cate_empty">
+		</div>
+		<div class="row pt-4">
+			<div class="col-md-12">
+				<ul class="list-unstyled ul-media-b">
+					<li class="media d-flex pb-4 items-new-green">
+						<a href="#" class="link-media d-flex">
+							<div class="img mr-3 bg_empty bg_wave img_empty">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"><b></b></span>
+								<p class="items-new-shordesc bg_empty bg_wave content_empty"></p>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-green">
+						<a href="#" class="link-media d-flex">
+							<div class="img mr-3 bg_empty bg_wave img_empty">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"><b></b></span>
+								<p class="items-new-shordesc bg_empty bg_wave content_empty"></p>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-green">
+						<a href="#" class="link-media d-flex">
+							<div class="img mr-3 bg_empty bg_wave img_empty">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"><b></b></span>
+								<p class="items-new-shordesc bg_empty bg_wave content_empty"></p>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-green">
+						<a href="#" class="link-media d-flex">
+							<div class="img mr-3 bg_empty bg_wave img_empty">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"><b></b></span>
+								<p class="items-new-shordesc bg_empty bg_wave content_empty"></p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

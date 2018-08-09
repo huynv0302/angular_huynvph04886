@@ -1,0 +1,236 @@
+<!--danh muc-->
+<div class="row pt-5 pb-0" *ngIf="postData">
+	<div class="col-md-6">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_bue">
+			<h3 class="cate-tile bg-blue pr-3 pl-3 pt-2 pb-2">
+				{{cateData.name}}
+			</h3>
+		</div>
+		<div class="row pt-4">
+			<div class="col-md-12 pr-4" *ngIf="postData != false">
+				<div class="items-new items-new-blue">
+					<a routerLink="/detail/{{postData[0].slug}}/{{postData[0].id}}" class="news-top position-relative">
+						<div class="img h-235">
+							<img class="smooth" [src]="postData[0].feature_images" alt="placeholder+image">
+						</div>
+						<div class="content p-4 position-absolute">
+							<h3 class="title fz-15">{{postData[0].title}}</h3>
+							<span class="date"><b>Ha Noi</b>, {{postData[0].timetext}}</span>
+						</div>
+					</a>
+				</div>
+
+				<ul class="list-unstyled pt-4">
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData[1].slug}}/{{postData[1].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData[1].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData[1].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData[1].timetext}}</span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData[2].slug}}/{{postData[2].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData[2].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData[2].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData[2].timetext}}</span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData[3].slug}}/{{postData[3].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData[3].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData[3].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData[3].timetext}}</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_black">
+			<h3 class="cate-tile bg-green pr-3 pl-3 pt-2 pb-2">
+				{{cateData_two.name}}
+			</h3>
+		</div>
+		<div class="row pt-4" *ngIf="postData_two != false">
+			<div class="col-md-12 pr-4">
+				<div class="items-new items-new-blue">
+					<a routerLink="/detail/{{postData_two[0].slug}}/{{postData_two[0].id}}" class="news-top position-relative">
+						<div class="img h-235">
+							<img class="smooth" [src]="postData_two[0].feature_images" alt="placeholder+image">
+						</div>
+						<div class="content p-4 position-absolute">
+							<h3 class="title fz-15">{{postData_two[0].title}}</h3>
+							<span class="date"><b>Ha Noi</b>, {{postData_two[0].timetext}}</span>
+						</div>
+					</a>
+				</div>
+
+				<ul class="list-unstyled pt-4">
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData_two[1].slug}}/{{postData_two[1].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData_two[1].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData_two[1].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData_two[1].timetext}}</span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData_two[2].slug}}/{{postData_two[2].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData_two[2].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData_two[2].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData_two[2].timetext}}</span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/detail/{{postData_two[3].slug}}/{{postData_two[3].id}}" class="link-media d-flex">
+							<div class="img mr-3">
+								<img class="" [src]="postData_two[3].feature_images" alt="Generic placeholder image">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{postData_two[3].title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{postData_two[3].timetext}}</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!--empty data-->
+<div class="row pt-5 pb-0" *ngIf="postData == false">
+	<div class="col-md-6">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_bue cate_empty bg_empty bg_wave">
+		</div>
+		<div class="row pt-4">
+			<div class="col-md-12 pr-4">
+				<div class="items-new items-new-blue">
+					<a routerLink="/" class="news-top position-relative">
+						<div class="img h-235 bg_empty bg_wave">
+
+						</div>
+						<div class="content p-4 position-absolute">
+							<h3 class="title fz-15 title_empty bg_empty bg_wave"></h3>
+							<span class="date bg_empty bg_wave address_empty"></span>
+						</div>
+					</a>
+				</div>
+
+				<ul class="list-unstyled pt-4">
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_bue cate_empty bg_empty bg_wave">
+		</div>
+		<div class="row pt-4">
+			<div class="col-md-12 pr-4">
+				<div class="items-new items-new-blue">
+					<a routerLink="/" class="news-top position-relative">
+						<div class="img h-235 bg_empty bg_wave">
+
+						</div>
+						<div class="content p-4 position-absolute">
+							<h3 class="title fz-15 title_empty bg_empty bg_wave"></h3>
+							<span class="date bg_empty bg_wave address_empty"></span>
+						</div>
+					</a>
+				</div>
+
+				<ul class="list-unstyled pt-4">
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-blue">
+						<a routerLink="/" class="link-media d-flex">
+							<div class="img pr-1 bg_empty bg_wave">
+
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 title_empty bg_empty bg_wave"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>

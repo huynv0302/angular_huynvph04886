@@ -1,0 +1,68 @@
+<header class="shadow-sm bg-white">
+	<section class="header-top p-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<ul class="link-header-top p-0 m-0">
+						<li>
+							<a href="#">Sunday, July 22</a>
+						</li>
+						<li>
+							<a href="#">{{active_menu}}</a>
+						</li>
+						<li>
+							<a href="#">About</a>
+						</li>
+						<li>
+							<a routerLink="/login">Sign in</a>
+						</li>
+						<li>
+							<a routerLink="/register">Register</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container pt-4 pb-4">
+			<div class="row">
+				<div class="col-md-3 align-self-center">
+					<a routerLink="/" class="logo">
+						<img class="" src="../../../assets/images/logo.png" alt="logo"/>
+					</a>
+				</div>
+				<div class="col-md-9">
+					<div class="row justify-content-end">
+						<a href="#" class="col-md-12 banner p-0">
+							<img src="../../../assets/images/banner.jpg" alt="banner" class="img-fluid" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container position-relative">
+			<app-menu-cate-bar [active_menu]="active_menu"></app-menu-cate-bar>
+			<form class="d-inline-block position-absolute form-search" action="/search" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+				<input id="inputsearch" type="text" formControlName="keyword" placeholder="Từ khóa" class="pl-2" [(ngModel)]="term" (keyup)="onKey($event)" (blur)="onBlur()" (focus)="onFocus($event)">
+				<div class="position-absolute search-filter" *ngIf="items != null">
+					<ul class="list-unstyled">
+						<li class="media mb-2" *ngFor = "let item of items.data |filter:term">
+							<a (click)="onClickSearch(item.title)">
+								<img class="mr-1 bg_wave bg_empty_filter" [src]="item.feature_images" alt="Generic placeholder image">
+								<div class="media-body">
+									<h5 class="mt-0 mb-1">{{item.title}}</h5>
+								</div>
+							</a>
+						</li>
+						<li *ngIf="items.data == null">
+							<p class="error-filter text-center">{{items.error}}</p>
+						</li>
+					</ul>
+				</div>
+			</form>
+		</div>
+	</section>
+</header>

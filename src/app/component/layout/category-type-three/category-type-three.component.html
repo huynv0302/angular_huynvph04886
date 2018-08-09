@@ -1,0 +1,80 @@
+<!--danh muc-->
+<div class="row pt-5 pb-0 position-relative" *ngIf="postData">
+	<div class="loading position-absolute" *ngIf="loading == false"><img src="../../../assets/images/loading.gif"/></div>
+	<div class="col-md-12">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_gray">
+			<h3 class="cate-tile bg-gray pr-3 pl-3 pt-2 pb-2">
+				{{cateData.name}}
+			</h3>
+		</div>
+		<div class="row pt-4 fz-15">
+			<div class="{{next==true? 'col-md-4 item-animate-next': prev==true? 'col-md-4 item-animate-prev' : 'col-md-4'}}" *ngFor="let val of postData">
+				<div class="items-new items-new-gray">
+					<a routerLink="/detail/{{val.slug}}/{{val.id}}" class="img position-relative h-150">
+						<img [src]="val.feature_images" alt=""/>
+						<span class="cate position-absolute pl-2 pr-2">{{val.category.name}}</span>
+					</a>
+					<div class="items-new-body pt-2 pb-3">
+						<a routerLink="/detail/{{val.slug}}/{{val.id}}" class="title">{{val.title}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="">
+			<ul class="page_controle page_controle_yellow">
+				<li class="{{page > 1? '': 'page_null'}}">
+					<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+				</li>
+				<li class="{{page == lastPage? 'page_null': ''}}">
+					<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--empty data-->
+<div class="row pt-5 pb-0 position-relative" *ngIf="postData == false">
+	<div class="col-md-12">
+		<div class="cate_top d-flex justify-content-start position-relative cate_top_gray bg_empty bg_wave cate_empty">
+		</div>
+		<div class="row pt-4 fz-15">
+			<div class="col-md-4">
+				<div class="items-new items-new-gray">
+					<a routerLink="/" class="img position-relative h-150 bg_empty bg_wave img_empty">
+					</a>
+					<div class="items-new-body pt-2 pb-3">
+						<a routerLink="/" class="title bg_empty bg_wave title_empty"></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="items-new items-new-gray">
+					<a routerLink="/" class="img position-relative h-150 bg_empty bg_wave img_empty">
+					</a>
+					<div class="items-new-body pt-2 pb-3">
+						<a routerLink="/" class="title bg_empty bg_wave title_empty"></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="items-new items-new-gray">
+					<a routerLink="/" class="img position-relative h-150 bg_empty bg_wave img_empty">
+					</a>
+					<div class="items-new-body pt-2 pb-3">
+						<a routerLink="/" class="title bg_empty bg_wave title_empty"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="">
+			<ul class="page_controle page_controle_yellow">
+				<li class="{{page > 1? '': 'page_null'}}">
+					<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+				</li>
+				<li class="{{page == lastPage? 'page_null': ''}}">
+					<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

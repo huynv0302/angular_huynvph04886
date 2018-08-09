@@ -1,0 +1,130 @@
+<!--danh muc-->
+<div class="row pt-5 pb-0" *ngIf="postData">
+	<div class="col-md-12">
+		<div class="cate_top d-flex justify-content-start position-relative">
+			<h3 class="cate-tile bg-warning pr-3 pl-3 pt-2 pb-2">
+				{{cateData.name}}
+			</h3>
+			<nav class="menu-link-yellow">
+				<ul>
+					<li *ngFor="let val of cateData.cate_child"><a routerLink="/category/{{val.slug}}/{{val.id}}" title="{{val.name}}">{{val.name}}</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="row pt-4 position-relative">
+			<div class="loading position-absolute" *ngIf="loading == false"><img src="../../../assets/images/loading.gif"/></div>
+			<div class="col-md-6 pr-4">
+				<div class="items-new items-new-yellow">
+					<a routerLink="/detail/{{postData[0].slug}}/{{postData[0].id}}" class="img position-relative h-235">
+						<img [src]="postData[0].feature_images" alt="" />
+						<span class="cate position-absolute pl-2 pr-2">{{postData[0].category.name}}</span>
+					</a>
+					<div class="items-new-body pt-3 pb-3">
+						<a routerLink="/detail/{{postData[0].slug}}/{{postData[0].id}}" class="title">{{postData[0].title}}</a>
+						<span class="items-new-date pt-2 pb-2"><b>John Doe</b> -  Feb 26, 2017</span>
+						<p class="items-new-shordesc">{{postData[0].short_desc}}<a href="#" class="items_new_comment">2</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 pl-4">
+				<ul class="list-unstyled list-media">
+					<li class="media d-flex pb-4 items-new-yellow" *ngFor="let val of postData; first as isFirst" >
+						<a routerLink="/detail/{{val.slug}}/{{val.id}}" class="link-media d-flex" *ngIf="!isFirst">
+							<div class="img mr-3">
+								<img class="" [src]="val.feature_images" alt="{{val.title}}">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1">{{val.title}}</h5>
+								<span class="items-new-date pt-1 pb-2">{{val.timetext}}</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="">
+			<ul class="page_controle page_controle_yellow">
+				<li class="{{page > 1? '': 'page_null'}}">
+					<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+				</li>
+				<li class="{{page == lastPage? 'page_null': ''}}">
+					<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--empty data-->
+<div class="row pt-5 pb-0" *ngIf="postData == false">
+	<div class="col-md-12">
+		<div class="cate_top d-flex justify-content-start position-relative bg_empty bg_wave cate_empty">
+		</div>
+		<div class="row pt-4 position-relative">
+			<div class="col-md-6 pr-4">
+				<div class="items-new items-new-yellow">
+					<a routerLink="/" class="img position-relative h-235 bg_empty bg_wave">
+					</a>
+					<div class="items-new-body pt-3 pb-3">
+						<a routerLink="/" class="title bg_empty bg_wave title_empty"></a>
+						<span class="items-new-date pt-2 pb-2 bg_empty bg_wave address_empty"></span>
+						<p class="items-new-shordesc bg_empty bg_wave content_empty"></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 pl-4">
+				<ul class="list-unstyled list-media">
+					<li class="media d-flex pb-4 items-new-yellow">
+						<a routerLink="/" class="link-media d-flex" *ngIf="!isFirst">
+							<div class="img pr-1 bg_empty bg_wave">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-yellow">
+						<a routerLink="/" class="link-media d-flex" *ngIf="!isFirst">
+							<div class="img pr-1 bg_empty bg_wave">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-yellow">
+						<a routerLink="/" class="link-media d-flex" *ngIf="!isFirst">
+							<div class="img pr-1 bg_empty bg_wave">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+					<li class="media d-flex pb-4 items-new-yellow">
+						<a routerLink="/" class="link-media d-flex" *ngIf="!isFirst">
+							<div class="img pr-1 bg_empty bg_wave">
+							</div>
+							<div class="media-body pl-1">
+								<h5 class="mt-0 mb-1 bg_empty bg_wave title_empty"></h5>
+								<span class="items-new-date pt-1 pb-2 bg_empty bg_wave address_empty"></span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="">
+			<ul class="page_controle page_controle_yellow">
+				<li class="{{page > 1? '': 'page_null'}}">
+					<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+				</li>
+				<li class="{{page == lastPage? 'page_null': ''}}">
+					<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

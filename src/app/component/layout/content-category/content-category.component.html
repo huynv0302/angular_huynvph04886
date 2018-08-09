@@ -1,0 +1,42 @@
+<div class="cate-title" *ngIf="cateData != false">
+	<h1>{{cateData.name}}</h1>
+</div>
+<div class="cate-button">
+	<ul class="m-0">
+		<li *ngFor="let val of cateChild"><a routerLink="/category/{{val.slug}}/{{val.id}}">{{val.name}}</a></li>
+	</ul>
+
+</div>
+<div class="cate-content">
+	<!--danh muc-->
+	<div class="row pt-3 pb-0">
+		<div class="col-md-12">
+			<div class="row pt-4">
+				<div class="col-md-6" *ngFor="let post of data">
+					<div class="items-new items-new-green">
+						<a routerLink="/detail/{{post.slug}}/{{post.id}}" class="img position-relative h-160">
+							<img [src]="post.feature_images" alt="" onError="images_default"/>
+							<span class="cate position-absolute pl-2 pr-2">{{post.category.name}}</span>
+						</a>
+						<div class="items-new-body pt-3 pb-3">
+							<a routerLink="/detail/{{post.slug}}/{{post.id}}" class="title">{{post.title}}</a>
+							<span class="items-new-date pt-2 pb-2"><b>John Doe</b> -  Feb 26, 2017</span>
+							<p class="items-new-shordesc">{{post.short_desc}}<a href="#" class="items_new_comment">2</a></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="">
+				<ul class="page_controle page_controle_yellow">
+					<li class="{{page > 1? '': 'page_null'}}">
+						<a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+					</li>
+					<li class="{{page == lastPage? 'page_null': ''}}">
+						<a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

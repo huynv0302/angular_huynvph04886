@@ -15,7 +15,7 @@
 				<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="text-center form-login pb-5">
 					<div *ngIf="dataForm.status == 'INVALID' && dataForm.touched" class="alert alert-danger p-0 border-0 errors">
 						<span *ngIf="dataForm.controls.email?.errors?.required">Bạn chưa nhập email</span>
-						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Bạn chưa nhập mật khẩu</span>
+						<span *ngIf="dataForm.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.password.touched">Bạn chưa nhập mật khẩu</span>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" formControlName="email" placeholder="Ten dang nhap">

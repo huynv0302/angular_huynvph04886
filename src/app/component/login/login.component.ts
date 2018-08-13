@@ -11,8 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
   dataForm: FormGroup;
   grant_type: string = 'password';
-  client_id: string = '4';
-  client_secret: string = 'SPo3nvTdFiWYC0noe2QPgyTRptneGVBUzhnfzNKj';
+  client_id: string = '2';
+  client_secret: string = 'nS7zqSMJKPGE2XD9trAX2cRy0Quunoj1YsW95MFy';
   username: string;
   password: string;
   error: any;

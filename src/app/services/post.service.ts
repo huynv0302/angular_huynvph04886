@@ -18,11 +18,11 @@ export class PostService {
   };
 
   getAllPosts(limit: number){
-  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit;
+  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0';
     return this.http.get(requestUrl);
   }
   getTopPosts(limit: number){
-  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit;
+  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=1';
   	return this.http.get(requestUrl);
   }
 

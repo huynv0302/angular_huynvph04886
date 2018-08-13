@@ -641,3 +641,14 @@ header nav ul li a:hover{
 .error-filter{
 	color: #fff
 }
+.login{
+	color: #fff
+}
+.logout{
+	color: #ccc;
+	font-size: 13px
+}
+a.logout:hover{
+	color: #ccc!important;
+	font-weight: bold!important;
+}

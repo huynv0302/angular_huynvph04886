@@ -12,15 +12,19 @@
 		<div class="row pt-0 pb-0">
 			<div class="col-md-12">
 				<h1 class="text-center mb-5">Đăng nhập</h1>
-				<form action="#" class="text-center form-login pb-5">
-					<div class="form-group">
-						<input type="text" class="form-control" name="name" placeholder="Ten dang nhap">
+				<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="text-center form-login pb-5">
+					<div *ngIf="dataForm.status == 'INVALID' && dataForm.touched" class="alert alert-danger p-0 border-0 errors">
+						<span *ngIf="dataForm.controls.email?.errors?.required">Bạn chưa nhập email</span>
+						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Bạn chưa nhập mật khẩu</span>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" name="name" placeholder="mat khau">
+						<input type="text" class="form-control" formControlName="email" placeholder="Ten dang nhap">
 					</div>
 					<div class="form-group">
-						<button class="btn btn-success">Submit</button>
+						<input type="password" class="form-control" formControlName="password" placeholder="mat khau">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success" [disabled]="!dataForm.valid">Submit</button>
 					</div>
 				</form>
 			</div>

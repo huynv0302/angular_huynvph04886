@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
@@ -7,7 +9,20 @@ import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl} from 
 })
 export class RegisterComponent implements OnInit {
 	dataForm : FormGroup;
-	constructor(private fb: FormBuilder) { }
+	formSubmit: any = {
+		email : '',
+		name : '',
+		password: ''
+	}
+	httpOptions = {
+	    headers: new HttpHeaders({ 
+		        'Content-Type': 'application/json', 
+		        'Access-Control-Allow-Origin' : '*'
+		      })
+	};
+	listUser: any
+	errorForm: any
+	constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute, private routerLink: Router) { }
 
 	ngOnInit() {
 		this.dataForm = this.fb.group({
@@ -18,9 +33,27 @@ export class RegisterComponent implements OnInit {
 				confirmPassword: ['', [Validators.required, this.passwordConfirming]]
 			})
 		})
+		this.getListUser();
+		this.checkLogin();
 	}
 	onSubmit() {
-		console.log(this.dataForm);
+		let formData: FormData = new FormData();
+		formData.append('email',this.dataForm.value.email);
+		formData.append('name',this.dataForm.value.name);
+		formData.append('password',this.dataForm.value.pw.password);
+		let url = 'http://localhost:8000/api/register_user';
+		this.http.post<any>(url, formData).subscribe(
+			req => {
+				if(req.success){
+					alert('Chúc mừng bạn đã đăng ký thành công')
+					this.routerLink.navigate(['/login']);
+				}
+				else{
+					alert(req.message);
+				}
+			}
+		)
+		console.log(this.dataForm.value);
 	}
 	passwordConfirming(c: AbstractControl): any {
 		if(!c.parent || !c) return;
@@ -33,6 +66,23 @@ export class RegisterComponent implements OnInit {
 
 		}
 	}
+	checkEmail(c: AbstractControl):any{
+		if(!c.parent || !c) return;
+		let result = false;
+		const email = c.parent.get('email');
+		
+		if(result){
+			return { invalid: true };
+		}
+	}
+	getListUser(){
+		return this.http.get<any>('http://localhost:8000/list-user');
+	}
+	checkLogin(){
+    if(localStorage.getItem('token')){
+      this.routerLink.navigate(['/']);
+    }
+  }
 }
 
 

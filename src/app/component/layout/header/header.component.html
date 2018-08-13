@@ -13,13 +13,19 @@
 						<li>
 							<a href="#">About</a>
 						</li>
-						<li>
+						<li *ngIf="!login">
 							<a routerLink="/login">Sign in</a>
 						</li>
-						<li>
+						<li *ngIf="!login">
 							<a routerLink="/register">Register</a>
 						</li>
 					</ul>
+				</div>
+				<div class="col-md-4 text-right">
+					<div class="float-right login" *ngIf="login">
+						{{dataLogin.name}}
+						<span>(</span><a href="javascript:void(0)" (click)="logout()" class="logout">Logout</a><span>)</span>
+					</div>
 				</div>
 			</div>
 		</div>

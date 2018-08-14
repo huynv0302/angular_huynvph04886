@@ -13,15 +13,24 @@
 			<div class="col-md-12">
 				<h1 class="text-center mb-5">Đăng ký</h1>
 				<form class="text-center form-register pb-5" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
-					<div *ngIf="dataForm.status == 'INVALID' && dataForm.touched" class="alert alert-danger p-0 border-0 errors">
-						<span *ngIf="dataForm.controls.email?.errors?.required">Bạn chưa nhập email</span>
-						<span *ngIf="dataForm.controls.email?.errors?.email">Email sai định dạng</span>
-						<span *ngIf="dataForm.controls.name?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name.touched">Tên không được để trống</span>
-						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Bạn chưa nhập mật khẩu</span>
-						<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.minlength?.actualLength < dataForm.controls.pw?.controls.password?.errors?.minlength?.requiredLength && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Mật khẩu tối thiểu 6 ký tự</span>
-						<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Chưa nhập lại mật khẩu</span>
-						<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.invalid && !dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Mật khẩu nhập lại chưa chính xác</span>
+						<div *ngIf="dataForm.controls.avatar.errors" class="alert alert-danger p-0 border-0 errors">
+							<span class="text-danger" *ngIf="dataForm.controls.avatar.errors.fileExt">File type invalid (jpg|jpeg|png|gif)!</span>
+						</div>
+						<div *ngIf="dataForm.status == 'INVALID' && dataForm.touched" class="alert alert-danger p-0 border-0 errors">
+							<span *ngIf="dataForm.controls.email?.errors?.required && dataForm.controls.email.touched && dataForm.controls.avatar?.status == 'VALID'">Bạn chưa nhập email</span>
+							<span *ngIf="dataForm.controls.email?.errors?.email && dataForm.controls.email.touched">Email sai định dạng</span>
+							<span *ngIf="dataForm.controls.name?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name.touched">Tên không được để trống</span>
+							<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.required && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Bạn chưa nhập mật khẩu</span>
+							<span *ngIf="dataForm.controls.pw?.controls.password?.errors?.minlength?.actualLength < dataForm.controls.pw?.controls.password?.errors?.minlength?.requiredLength && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID' && dataForm.controls.pw.controls.password.touched">Mật khẩu tối thiểu 6 ký tự</span>
+							<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Chưa nhập lại mật khẩu</span>
+							<span *ngIf="dataForm.controls.pw?.controls.confirmPassword?.errors?.invalid && !dataForm.controls.pw?.controls.confirmPassword?.errors?.required && dataForm.controls.pw.controls.password?.status == 'VALID' && dataForm.controls.email?.status == 'VALID' && dataForm.controls.name?.status == 'VALID'">Mật khẩu nhập lại chưa chính xác</span>
 					</div>
+					<div class="form-group">
+						 <div class="custom-file">
+						    <input [allowedExt]="allowedFileExt" (change)="changeImage($event)" formControlName="avatar" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+						    <label class="custom-file-label" for="inputGroupFile01">{{dataForm.controls.avatar.value?dataForm.controls.avatar.value[0].name: 'Hình ảnh'}}</label>
+						 </div>
+					</div>	
 					<div class="form-group">
 						<input type="text" class="form-control" formControlName="email" placeholder="Email">
 					</div>

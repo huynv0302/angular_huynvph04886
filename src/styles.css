@@ -652,3 +652,15 @@ a.logout:hover{
 	color: #ccc!important;
 	font-weight: bold!important;
 }
+.avatar{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.avatar img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%
+}

@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
 	formSubmit: any = {
 		email : '',
 		name : '',
-		password: ''
+		password: '',
+		avatar: ''
 	}
 	httpOptions = {
 	    headers: new HttpHeaders({ 
@@ -22,10 +23,13 @@ export class RegisterComponent implements OnInit {
 	};
 	listUser: any
 	errorForm: any
+	allowedFileExt: any = '(.jpe?g|.png|.gif)';
+	image: any;
 	constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute, private routerLink: Router) { }
 
 	ngOnInit() {
 		this.dataForm = this.fb.group({
+			avatar : ['', [Validators.required]],
 			email : ['', [Validators.required, Validators.email]],
 			name : ['', [Validators.required]],
 			pw: this.fb.group({
@@ -41,6 +45,7 @@ export class RegisterComponent implements OnInit {
 		formData.append('email',this.dataForm.value.email);
 		formData.append('name',this.dataForm.value.name);
 		formData.append('password',this.dataForm.value.pw.password);
+		formData.append('avatar',this.image);
 		let url = 'http://localhost:8000/api/register_user';
 		this.http.post<any>(url, formData).subscribe(
 			req => {
@@ -79,10 +84,14 @@ export class RegisterComponent implements OnInit {
 		return this.http.get<any>('http://localhost:8000/list-user');
 	}
 	checkLogin(){
-    if(localStorage.getItem('token')){
-      this.routerLink.navigate(['/']);
-    }
-  }
+	    if(localStorage.getItem('token')){
+	      this.routerLink.navigate(['/']);
+	    }
+  	}
+  	changeImage(e){
+  		this.image = e.target.files[0];
+  		console.log(e.target.files[0]);
+  	}
 }
 
 

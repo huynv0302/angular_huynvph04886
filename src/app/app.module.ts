@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import {FileInputAccessorModule} from "file-input-accessor";
+
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 
@@ -80,7 +82,8 @@ import { ModalComponent } from './component/layout/modal/modal.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FileInputAccessorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

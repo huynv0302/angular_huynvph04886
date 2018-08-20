@@ -13,7 +13,8 @@ import { CategoryComponent } from './component/category/category.component';
 import { SearchComponent } from './component/search/search.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-
+import { PostComponent } from './component/admin/post/post.component';
+import { PostFormComponent } from './component/admin/post-form/post-form.component';
 
 const routes: Routes = [
   { path: 'lab/about', component: AboutComponent },
@@ -23,7 +24,10 @@ const routes: Routes = [
   { path: 'category/:cate_slug/:cate_id', component: CategoryComponent },
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'admin/post', component: PostComponent },
+  { path: 'admin/post/add', component: PostFormComponent },
+  { path: 'admin/post/edit/:id', component: PostFormComponent }
 ];
 
 @NgModule({

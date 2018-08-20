@@ -17,8 +17,8 @@ export class PostService {
       })
   };
 
-  getAllPosts(limit: number){
-  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0';
+  getAllPosts(limit: number, page:number = 1){
+  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0&page='+page;
     return this.http.get(requestUrl);
   }
   getTopPosts(limit: number){

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="application/x-javascript">
+  addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+
+  function hideURLbar() { window.scrollTo(0, 1); }
+
+  </script>
+  <!-- bootstrap-css -->
+  <link rel="stylesheet" href="../../../assets/admin/css/bootstrap.min.css">
+  <!-- //bootstrap-css -->
+  <!-- Custom CSS -->
+  <link href="../../../assets/admin/css/style.css" rel='stylesheet' type='text/css' />
+  <link href="../../../assets/admin/css/style-responsive.css" rel="stylesheet" />
+  <!-- font CSS -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- font-awesome icons -->
+  <!-- //font-awesome icons -->
+  <script src="../../../assets/admin/js/jquery2.0.3.min.js"></script>
+</head>
+
+<body>
+  <section id="container">
+    <!--header start-->
+    <header class="header fixed-top clearfix">
+      <!--logo start-->
+      <div class="brand">
+        <a href="index.html" class="logo">
+	        Admin
+	    </a>
+        <div class="sidebar-toggle-box">
+          <div class="fa fa-bars"></div>
+        </div>
+      </div>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+      </div>
+      <div class="top-nav clearfix">
+        <!--search & user info start-->
+        <ul class="nav pull-right top-menu">
+          <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+          </li>
+          <!-- user login dropdown start-->
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="javascript:void(0)">
+	                <img alt="" src="../../../assets/admin/images/2.png">
+	                <span class="username">John Doe</span>
+	            </a>
+            <ul class="dropdown-menu extended logout">
+              <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
+              <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
+              <li><a href="login.html"><i class="fa fa-key"></i> đăng xuất</a></li>
+            </ul>
+          </li>
+          <!-- user login dropdown end -->
+        </ul>
+        <!--search & user info end-->
+      </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+          <ul class="sidebar-menu" id="nav-accordion">
+            <li class="sub-menu">
+              <a class="" href="javascript:;">
+	                <i class="fa fa-th"></i>
+	                <span>Tin tức</span>
+	           </a>
+              <ul class="sub">
+                <li><a href="javascript:void(0)" class="">Danh sách</a></li>
+                <li><a class="active" href="javascript:void(0)">Thêm mới</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="table-agile-info">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+             	{{titleSite}}
+            </div>
+            <div class="table-responsive pt-3 pb-3">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+              	<form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+              		<div class="form-group">
+              			<span class="">Chú ý mục (<span style="color: red">*</span>) là bắt buộc.</span>
+              		</div>
+              		<div class="form-group position-relative mt-4">
+              			<div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile02" formControlName="feature_image" [allowedExt]="allowedFileExt" (change)="changeImage($event)">
+						    <label class="custom-file-label" for="inputGroupFile02">{{dataForm.controls.feature_image.value?dataForm.controls.feature_image.value[0].name: 'Hình ảnh'}}</label>
+						    <div class="form-control-feedback form-control-feedback-my form-control-feedback-images" *ngIf="dataForm.controls.feature_image.errors && (dataForm.controls.feature_image.dirty || dataForm.controls.feature_image.touched)">
+						    	<span class="text-danger" *ngIf="dataForm.controls.feature_image.errors.required">ảnh không được để trống!</span>
+								<span class="text-danger" *ngIf="dataForm.controls.feature_image.errors.fileExt">File type invalid (jpg|jpeg|png|gif)!</span>
+							</div>
+						</div>
+              		</div>		
+              		<div class="form-group position-relative">
+              			<label >Danh mục <span style="color: red">*</span></label>
+              			<div class="form-control" (click)="showCate()">
+              				<span>{{selectCate?selectCate:"danh muc"}}</span>
+              			</div>
+              			<div class="cate_list_select position-absolute shadow mb-2 bg-white rounded" *ngIf="showListCate">
+              				<ul class="cat_child_list">
+							  <li class="list-group-item" *ngFor="let val of catelist">
+							  	<a href="javascript:void(0)" *ngIf="val.category.length == 0" (click)="onChangleCate(val.name,val.id)">{{val.name}}</a>
+							  	<a href="#" *ngIf="val.category.length > 0" class="cate_parent">{{val.name}}</a>
+							  	<ul class="list-group" *ngIf="val.category">
+							  		<li class="list-group-item" *ngFor="let cat_child of val.category">
+							  			<a href="javascript:void(0)" (click)="onChangleCate(cat_child.name,cat_child.id)">{{cat_child.name}}</a>
+							  		</li>
+							  	</ul>
+							  </li>
+							</ul>
+              			</div>
+              		</div>
+	                <div class="form-group position-relative">
+	                  <label for="title">Tiêu đề <span style="color: red">*</span></label>
+	                  <input type="text" formControlName="title" class="form-control" id="title" placeholder="Tiêu đề">
+	                  <div class="form-control-feedback form-control-feedback-my" *ngIf="dataForm.controls.title.errors && (dataForm.controls.title.dirty || dataForm.controls.title.touched)">
+						<span class="text-danger" *ngIf="dataForm.controls.title.errors.required">Tiêu đề không được để trống!</span>
+						<span class="text-danger" *ngIf="dataForm.controls.title.errors.minlength">Tiêu đề tối thiểu 4 ký tự!</span>
+					  </div>
+	                </div>
+	                <div class="form-group position-relative">
+	                  <label for="short_desc">Mô tả <span style="color: red">*</span></label>
+	                  <input type="text" class="form-control" formControlName="short_desc" id="short_desc" placeholder="Mô tả ngắn">
+	                  <div class="form-control-feedback form-control-feedback-my" *ngIf="dataForm.controls.short_desc.errors && (dataForm.controls.short_desc.dirty || dataForm.controls.short_desc.touched)">
+						<span class="text-danger" *ngIf="dataForm.controls.short_desc.errors.required">Mô tả không được để trống!</span>
+					  </div>
+	                </div>
+	                <div class="form-group position-relative">
+	                  <label for="content">Nội dung <span style="color: red">*</span></label>
+	                  <textarea class="form-control" formControlName="content" id="content" style="min-height: 100px"></textarea>
+	                  <div class="form-control-feedback form-control-feedback-my" *ngIf="dataForm.controls.content.errors && (dataForm.controls.content.dirty || dataForm.controls.content.touched)">
+						<span class="text-danger" *ngIf="dataForm.controls.content.errors.required">Nội dung không được để trống!</span>
+					  </div>
+	                </div>
+	                <button type="submit" class="btn btn-primary">Submit</button>
+	              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!--main content end-->
+  </section>
+  <script src="../../../assets/admin/js/bootstrap.js"></script>
+  <script src="../../../assets/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="../../../assets/admin/js/scripts.js"></script>
+  <script src="../../../assets/admin/js/jquery.slimscroll.js"></script>
+  <script src="../../../assets/admin/js/jquery.nicescroll.js"></script>
+  <script src="../../../assets/admin/js/jquery.scrollTo.js"></script>
+</body>
+
+</html>

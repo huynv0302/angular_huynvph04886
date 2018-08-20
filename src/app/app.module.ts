@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FileInputAccessorModule} from "file-input-accessor";
-
+import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 
@@ -39,6 +39,12 @@ import { RegisterComponent } from './component/register/register.component';
 import { ContentLoginComponent } from './component/layout/content-login/content-login.component';
 import { ContentRegisterComponent } from './component/layout/content-register/content-register.component';
 import { ModalComponent } from './component/layout/modal/modal.component';
+import { PostComponent } from './component/admin/post/post.component';
+import { HeaderAdminComponent } from './component/admin/layout/header-admin/header-admin.component';
+import { AsideAdminComponent } from './component/admin/layout/aside-admin/aside-admin.component';
+import { FooterAdminComponent } from './component/admin/layout/footer-admin/footer-admin.component';
+import { PostAddComponent } from './component/admin/post-add/post-add.component';
+import { PostFormComponent } from './component/admin/post-form/post-form.component';
 
 
 @NgModule({
@@ -74,7 +80,13 @@ import { ModalComponent } from './component/layout/modal/modal.component';
     RegisterComponent,
     ContentLoginComponent,
     ContentRegisterComponent,
-    ModalComponent
+    ModalComponent,
+    PostComponent,
+    HeaderAdminComponent,
+    AsideAdminComponent,
+    FooterAdminComponent,
+    PostAddComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +95,8 @@ import { ModalComponent } from './component/layout/modal/modal.component';
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
-    FileInputAccessorModule
+    FileInputAccessorModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

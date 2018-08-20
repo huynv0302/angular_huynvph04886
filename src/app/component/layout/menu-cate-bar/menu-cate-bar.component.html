@@ -1,6 +1,6 @@
 <nav>
 	<ul>
 		<li><a routerLink="/">Trang chủ</a></li>
-		<li *ngFor="let cate of cateData"><a routerLink="category/{{cate.slug}}/{{cate.id}}" title="{{cate.name}}" class="">{{cate.name}}</a></li>
+		<li *ngFor="let cate of cateData"><a routerLink="/category/{{cate.slug}}/{{cate.id}}" title="{{cate.name}}" class="">{{cate.name}}</a></li>
 	</ul>
 </nav>

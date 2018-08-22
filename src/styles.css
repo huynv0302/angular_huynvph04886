@@ -664,3 +664,25 @@ a.logout:hover{
 	object-fit: cover;
 	border-radius: 50%
 }
+#myModal{
+	position: fixed;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+}
+.avatar_admin{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 10px
+}
+.preview_img{
+	width: 100px;
+	height: 100px;
+	margin-bottom: 15px
+}
+.preview_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

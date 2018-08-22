@@ -25,14 +25,31 @@
 </head>
 
 <body>
+  <section id="myModal" *ngIf="showModal">
+     <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Thông báo</h4>
+          </div>
+          <div class="modal-body">
+            <p>Bạn có muốn xóa?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePost(delete_postid)">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hiddenModal()">No</button>
+          </div>
+        </div>
+      </div>
+  </section>
   <section id="container">
     <!--header start-->
     <header class="header fixed-top clearfix">
       <!--logo start-->
       <div class="brand">
         <a href="index.html" class="logo">
-	        Admin
-	    </a>
+          Admin
+      </a>
         <div class="sidebar-toggle-box">
           <div class="fa fa-bars"></div>
         </div>
@@ -49,9 +66,9 @@
           <!-- user login dropdown start-->
           <li class="dropdown">
             <a class="dropdown-toggle" href="javascript:void(0)">
-	                <img alt="" src="../../../assets/admin/images/2.png">
-	                <span class="username">John Doe</span>
-	            </a>
+                  <img class="avatar_admin" alt="" [src]="avatar" *ngIf="dataLogin" />
+                  <span class="username" *ngIf="dataLogin">{{dataLogin.name}}</span>
+              </a>
             <ul class="dropdown-menu extended logout">
               <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
               <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
@@ -66,26 +83,25 @@
     <!--header end-->
     <!--sidebar start-->
     <aside>
-	  <div id="sidebar" class="nav-collapse">
-	    <!-- sidebar menu start-->
-	    <div class="leftside-navigation">
-	      <ul class="sidebar-menu" id="nav-accordion">
-	        <li class="sub-menu">
-	          <a class="" href="javascript:;">
-	                <i class="fa fa-th"></i>
-	                <span>Tin tức</span>
-	           </a>
-	          <ul class="sub">
-	            <li><a href="javascript:void(0)" class="active">Danh sách</a></li>
-	            <li><a class="" href="javascript:void(0)">Thêm mới</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-	    </div>
-	    <!-- sidebar menu end-->
-	  </div>
-	</aside>
-
+      <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+          <ul class="sidebar-menu" id="nav-accordion">
+            <li class="sub-menu">
+              <a class="" href="javascript:;">
+                  <i class="fa fa-th"></i>
+                  <span>Tin tức</span>
+             </a>
+              <ul class="sub">
+                <li><a routerLink="/admin/post" class="active">Danh sách</a></li>
+                <li><a class="" routerLink="/admin/post/add">Thêm mới</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
@@ -111,8 +127,8 @@
                 <div class="input-group">
                   <input type="text" class="input-sm form-control" placeholder="Search">
                   <span class="input-group-btn">
-		            <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-		          </span>
+                <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
+              </span>
                 </div>
               </div>
             </div>
@@ -126,9 +142,10 @@
                       </label>
                     </th>
                     <th style="width: 150px">Hình ảnh</th>
-                    <th style="width: 200px">Tiêu đề</th>
+                    <th style="width: 150px">Tiêu đề</th>
+                    <th style="width: 100px">Danh mục</th>
                     <th>Mô tả ngắn</th>
-                    <th style="width: 100px">Cập nhập</th>
+                    <th style="width: 150px">Cập nhập</th>
                     <th style="width:60px;"></th>
                   </tr>
                 </thead>
@@ -138,15 +155,14 @@
                       <label class="i-checks m-b-none">
                         <input type="checkbox" name="post[]"><i></i></label>
                     </td>
-                    <th><img style="height: 80px;" src="{{val.feature_images}}" alt="" /></th>
+                    <th><img style="height: 80px;" [src]="val.feature_images" alt="" /></th>
                     <td>{{val.title}}</td>
+                    <td><a (click)="getListPostOfCate(val.cate_id)">{{val.cate_name}}</a></td>
                     <td><span class="text-ellipsis">{{val.short_desc}}</span></td>
-                    <td><span class="text-ellipsis">{{val.update_at?val.update_at:val.create_at}}</span></td>
+                    <td><span class="text-ellipsis">{{val.updated_at}}</span></td>
                     <td>
-                    	<a routerLink="/admin/post/edit/{{val.id}}">edit</a><br>
-                    	<a routerLink="/admin/post/add">add</a><br>
-                    	<a href="">remove</a>
-                      <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                      <a class="btn btn-success text-white" routerLink="/admin/post/edit/{{val.id}}">sửa</a>
+                      <a class="btn btn-danger text-white" (click)="onShowModal(val.id)">xóa</a>
                     </td>
                   </tr>
                 </tbody>
@@ -154,17 +170,14 @@
             </div>
             <footer class="panel-footer">
               <div class="row">
-                <div class="col-sm-5 text-center">
-                  <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-                </div>
                 <div class="col-sm-7 text-right text-center-xs">
-                  <ul class="pagination pagination-sm m-t-none m-b-none">
-                    <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                    <li><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+                  <ul class="page_controle page_controle_yellow">
+                    <li class="{{page > 1? '': 'page_null'}}">
+                      <a (click)="prevPage()" href="javascript:void(0)">&lsaquo;</a>
+                    </li>
+                    <li class="{{page == lastPage? 'page_null': ''}}">
+                      <a (click)="nextPage()" href="javascript:void(0)">&rsaquo;</a>
+                    </li>
                   </ul>
                 </div>
               </div>

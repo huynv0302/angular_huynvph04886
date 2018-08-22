@@ -17,9 +17,9 @@ export class PostService {
       })
   };
 
-  getAllPosts(limit: number, page:number = 1){
-  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0&page='+page;
-    return this.http.get(requestUrl);
+  getAllPosts(limit: number, page:number = 1, cate_id:number = null){
+  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0&page='+page+'&cate_id='+cate_id;
+    return this.http.get<any>(requestUrl);
   }
   getTopPosts(limit: number){
   	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=1';
@@ -43,5 +43,10 @@ export class PostService {
   getSearch(keyword: string, limit: number = 16, page: number = 1): Observable<any>{
     var requestUrl = 'http://127.0.0.1:8000/search/'+keyword+'?limit='+limit+'&page='+page;
     return this.http.get<Post>(requestUrl);
+  }
+
+  deletePost(post_id: number): Observable<any>{
+    var requestUrl = 'http://127.0.0.1:8000/post/delete/'+post_id;
+    return this.http.get<any>(requestUrl);
   }
 }

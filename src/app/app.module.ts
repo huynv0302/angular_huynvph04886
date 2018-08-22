@@ -7,6 +7,7 @@ import {FileInputAccessorModule} from "file-input-accessor";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AboutComponent } from './lab/about/about.component';
 import { FormComponent } from './lab/form/form.component';
@@ -96,7 +97,8 @@ import { PostFormComponent } from './component/admin/post-form/post-form.compone
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     FileInputAccessorModule,
-    NgSelectModule
+    NgSelectModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

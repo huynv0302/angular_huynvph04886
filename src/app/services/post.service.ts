@@ -17,8 +17,8 @@ export class PostService {
       })
   };
 
-  getAllPosts(limit: number, page:number = 1, cate_id:number = null){
-  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0&page='+page+'&cate_id='+cate_id;
+  getAllPosts(limit: number, page:number = 1, cate_id:number = null, orderby:number = 0){
+  	var requestUrl = 'http://127.0.0.1:8000/post/all?limit='+limit+'&type=0&page='+page+'&cate_id='+cate_id+'&orderby='+orderby;
     return this.http.get<any>(requestUrl);
   }
   getTopPosts(limit: number){

@@ -22,6 +22,10 @@ export class PostComponent implements OnInit {
   login: boolean = false;
   dataLogin: any;
   avatar:any;
+  orderby: number = 0;
+  orderbydata: any;
+
+  showLogOut: boolean = false;
 
   constructor(private post : PostService, private http: HttpClient, private routerLink: Router) {
     
@@ -35,7 +39,7 @@ export class PostComponent implements OnInit {
   }
 
   getListPost(){
-  	this.post.getAllPosts(this.limit, this.page, this.cate_id).subscribe(
+  	this.post.getAllPosts(this.limit, this.page, this.cate_id, this.orderby).subscribe(
   		req => {
   			this.dataList = req;
         this.lastPage = req.last_page;
@@ -104,5 +108,20 @@ export class PostComponent implements OnInit {
       }
     )
     return false;
+  }
+
+  getOrderBy(e){
+    this.orderby = e;
+    this.getListPost();
+  }
+
+  logout(){
+    this.login = false;
+    localStorage.removeItem('token');
+    this.routerLink.navigate(['/login']);
+  }
+
+  showTien(){
+    this.showLogOut = !this.showLogOut;
   }
 }

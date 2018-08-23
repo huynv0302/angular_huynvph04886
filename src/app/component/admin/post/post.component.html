@@ -65,14 +65,14 @@
           </li>
           <!-- user login dropdown start-->
           <li class="dropdown">
-            <a class="dropdown-toggle" href="javascript:void(0)">
+            <a class="dropdown-toggle" href="javascript:void(0)" (click)="showTien()">
                   <img class="avatar_admin" alt="" [src]="avatar" *ngIf="dataLogin" />
                   <span class="username" *ngIf="dataLogin">{{dataLogin.name}}</span>
               </a>
-            <ul class="dropdown-menu extended logout">
+            <ul class="dropdown-menu extended logout" style="display: block;top: 100%;cursor: pointer;" *ngIf="showLogOut">
               <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
               <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
-              <li><a href="login.html"><i class="fa fa-key"></i> đăng xuất</a></li>
+              <li><a (click)="logout()"><i class="fa fa-key"></i> đăng xuất</a></li>
             </ul>
           </li>
           <!-- user login dropdown end -->
@@ -113,18 +113,16 @@
             </div>
             <div class="row w3-res-tb">
               <div class="col-sm-5 m-b-xs">
-                <select class="input-sm form-control w-sm inline v-middle">
-                  <option value="0">Bulk action</option>
-                  <option value="1">Delete selected</option>
-                  <option value="2">Bulk edit</option>
-                  <option value="3">Export</option>
+                <select class="input-sm form-control w-sm inline v-middle" [(ngModel)]="orderby" style="height: 30px">
+                  <option [value]="0">Mới nhất</option>
+                  <option [value]="1">Cũ nhất</option>
                 </select>
-                <button class="btn btn-sm btn-default">Apply</button>
+                <button class="btn btn-sm btn-default" (click)="getOrderBy(orderby)" style="outline: none;">Apply</button>
               </div>
               <div class="col-sm-4">
               </div>
               <div class="col-sm-3">
-                <div class="input-group">
+                <div class="input-group" style="display: none">
                   <input type="text" class="input-sm form-control" placeholder="Search">
                   <span class="input-group-btn">
                 <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
